@@ -8,6 +8,13 @@ beforeEach(() => {
   sut = new PagingHelper();
 });
 
+describe("GetPages() 少於七個顯示", () => {
+  it("總頁數小於等於6，應回傳[1,2,3,4,5,6]", () => {
+    let actual = sut.GetPages(1, 6);
+    actual.should.be.deep.equal([1, 2, 3, 4, 5, 6]);
+  });
+});
+
 describe("GetPages()", () => {
   let dataSet = [
     { page: 1, maxPage: 10, expected: [1, 2, 3, 4, 5, 0, 10] },
@@ -17,6 +24,8 @@ describe("GetPages()", () => {
     { page: 5, maxPage: 10, expected: [1, 0, 4, 5, 6, 0, 10] },
     { page: 6, maxPage: 10, expected: [1, 0, 5, 6, 7, 0, 10] },
     { page: 7, maxPage: 10, expected: [1, 0, 6, 7, 8, 9, 10] },
+    { page: 8, maxPage: 10, expected: [1, 0, 6, 7, 8, 9, 10] },
+    { page: 9, maxPage: 10, expected: [1, 0, 6, 7, 8, 9, 10] },
     { page: 10, maxPage: 10, expected: [1, 0, 6, 7, 8, 9, 10] }
   ];
   dataSet.forEach(d => {
