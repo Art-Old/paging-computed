@@ -13,7 +13,10 @@ class PagingHelper {
     return true;
   }
   GetPages(page, maxPage) {
-    let result = Array.from(Array(7).keys(), x => x + 1);
+    let count = maxPage <= 6 ? maxPage : 7;
+    let result = Array.from(Array(count).keys(), x => x + 1);
+    if (count <= 6) return result;
+
     let mid = this.GetMiddleNumber(page, maxPage);
     result[0] = this.minPage;
     result[1] = this.GetNearNumber(this.minPage, mid - 1);

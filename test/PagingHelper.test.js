@@ -9,9 +9,19 @@ beforeEach(() => {
 });
 
 describe("GetPages() 少於七個顯示", () => {
-  it("總頁數小於等於6，應回傳[1,2,3,4,5,6]", () => {
-    let actual = sut.GetPages(1, 6);
-    actual.should.be.deep.equal([1, 2, 3, 4, 5, 6]);
+  let dataSet = [
+    { maxPage: 1, expected: [1] },
+    { maxPage: 2, expected: [1, 2] },
+    { maxPage: 3, expected: [1, 2, 3] },
+    { maxPage: 4, expected: [1, 2, 3, 4] },
+    { maxPage: 5, expected: [1, 2, 3, 4, 5] },
+    { maxPage: 6, expected: [1, 2, 3, 4, 5, 6] }
+  ];
+  dataSet.forEach(d => {
+    it(`總頁數為 ${d.maxPage}，應回傳 ${d.expected}`, () => {
+      let actual = sut.GetPages(1, d.maxPage);
+      actual.should.be.deep.equal(d.expected);
+    });
   });
 });
 
