@@ -1,0 +1,17 @@
+{
+  "name": "paging-computed",
+  "version": "1.0.0",
+  "description": "分頁計算",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "@babel/core": "^7.3.4"
+  }
+}
