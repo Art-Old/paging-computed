@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+  </head>
+  <body>
+    <div id="my-app">
+      <label>Page:</label>
+      <input type="text" placeholder="page" v-model="form.page" />
+      <br />
+      <label>PageSize:</label>
+      <input type="text" placeholder="pageSize" v-model="form.pageSize" />
+      <br />
+      <label>TotalCount:</label>
+      <input type="text" placeholder="total" v-model="status.totalCount" />
+      <paging-info
+        :start="pagingStart"
+        :end="pagingEnd"
+        :total="pagingTotal"
+      ></paging-info>
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: "#my-app",
+        data: {
+          form: {
+            page: 1,
+            pageSize: 10
+          },
+          status: {
+            totalCount: 100
+          }
+        },
+        components: {
+          "paging-info": httpVueLoader("paging-info.vue")
+        },
+        computed: {
+          pagingStart() {
+            //第幾筆開始 = 分頁筆數 * ( 目前頁數 - 1 ) + 1
+            return this.form.page >= 1
+              ? this.form.pageSize * (this.form.page - 1) + 1
+              : 1;
+          },
+          pagingEnd() {
+            return this.form.page >= 1
+              ? this.pagingStart + this.form.pageSize - 1
+              : this.status.totalCount >= this.form.pageSize
+              ? this.form.pageSize
+              : this.status.totalCount;
+          },
+          pagingTotal() {
+            return this.status.totalCount;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

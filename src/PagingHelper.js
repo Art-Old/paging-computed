@@ -1,17 +1,53 @@
+// @ts-check
+
+/**
+ * 分頁計算Helper
+ *
+ * @class PagingHelper
+ */
 class PagingHelper {
+  /**
+   *Creates an instance of PagingHelper.
+   * @memberof PagingHelper
+   */
   constructor() {
     this.range = 3;
     this.minPage = 1;
   }
+  /**
+   * 是否顯示下一頁
+   *
+   * @param {number} page - 目前頁數
+   * @param {number} maxPage - 最大頁數
+   * @returns {boolean} True：顯示下一頁 / False：不顯示下一頁
+   * @memberof PagingHelper
+   */
   IsEnableNext(page, maxPage) {
     if (page >= maxPage) return false;
     return true;
   }
 
+  /**
+   * 是否顯示上一頁
+   *
+   * @param {number} page - 目前頁數
+   * @param {number} maxPage - 最大頁數
+   * @returns {boolean} True：顯示上一頁 / False：不顯示上一頁
+   * @memberof PagingHelper
+   */
   IsEnableLast(page, maxPage) {
     if (maxPage <= 1 || page <= 1) return false;
     return true;
   }
+
+  /**
+   * 取得分頁資訊
+   *
+   * @param {number} page - 目前頁數
+   * @param {number} maxPage - 最大頁數
+   * @returns {number[]} 分頁資訊
+   * @memberof PagingHelper
+   */
   GetPages(page, maxPage) {
     let count = maxPage <= 6 ? maxPage : 7;
     let result = Array.from(Array(count).keys(), x => x + 1);
@@ -29,22 +65,22 @@ class PagingHelper {
   }
 
   /**
-   * 取得相鄰的數字，不相鄰則回傳0
+   * 取得相鄰數字
    *
-   * @param {*} last
-   * @param {*} next
-   * @returns
+   * @param {number} last - 要判斷的數字(小)
+   * @param {number} next - 要判斷的數字(大)
+   * @returns {number} 回傳相鄰的數字，不相鄰則回傳0
    * @memberof PagingHelper
    */
   GetNearNumber(last, next) {
     return last + 1 === next - 1 ? last + 1 : 0;
   }
   /**
-   * 取得中間的數字
+   * 取得分頁陣列中，最中間顯示的數字
    *
-   * @param {*} page
-   * @param {*} maxPage
-   * @returns
+   * @param {number} page - 目前頁數
+   * @param {number} maxPage - 最大頁數
+   * @returns {number} 應顯示的頁碼
    * @memberof PagingHelper
    */
   GetMiddleNumber(page, maxPage) {
