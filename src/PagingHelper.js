@@ -14,6 +14,7 @@ class PagingHelper {
     this.range = 3;
     this.minPage = 1;
   }
+
   /**
    * 是否顯示下一頁
    *
@@ -95,5 +96,8 @@ class PagingHelper {
     return mid;
   }
 }
+
+var target = new PagingHelper();
+let result = target.GetPages("1", 10);
 
 module.exports = PagingHelper;
