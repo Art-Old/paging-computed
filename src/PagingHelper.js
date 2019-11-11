@@ -97,7 +97,8 @@ class PagingHelper {
   }
 }
 
-var target = new PagingHelper();
-let result = target.GetPages("1", 10);
+// var target = new PagingHelper();
+// let result = target.GetPages("1", 10);
+// console.log(result)
 
 module.exports = PagingHelper;
