@@ -5,7 +5,7 @@ chai.should();
 var PagingHelper = require("../src/PagingHelper.js");
 let sut = null;
 beforeEach(() => {
-  sut = new PagingHelper();
+  sut = PagingHelper
 });
 
 describe("GetPages() 少於七個顯示", () => {
