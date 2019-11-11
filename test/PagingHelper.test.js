@@ -46,27 +46,6 @@ describe("GetPages()", () => {
   });
 });
 
-describe("GetMiddleNumber()", () => {
-  let dataSet = [
-    { page: 1, maxPage: 10, expected: 4 },
-    { page: 2, maxPage: 10, expected: 4 },
-    { page: 3, maxPage: 10, expected: 4 },
-    { page: 4, maxPage: 10, expected: 4 },
-    { page: 5, maxPage: 10, expected: 5 },
-    { page: 6, maxPage: 10, expected: 6 },
-    { page: 7, maxPage: 10, expected: 7 },
-    { page: 8, maxPage: 10, expected: 7 },
-    { page: 9, maxPage: 10, expected: 7 },
-    { page: 10, maxPage: 10, expected: 7 }
-  ];
-  dataSet.forEach(d => {
-    it(`頁面 ${d.page}/${d.maxPage} 中位數應為${d.expected}`, () => {
-      let actual = sut.GetMiddleNumber(d.page, d.maxPage);
-      actual.should.be.equal(d.expected);
-    });
-  });
-});
-
 let dataSet = [
   { page: 1, maxPage: 10, expected: [false, true] },
   { page: 2, maxPage: 10, expected: [true, true] },
