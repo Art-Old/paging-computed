@@ -9,7 +9,7 @@
 取得當前分頁資料
 
 ```javascript
-var paging = require("./src/PagingHelper");
+var paging = require("paging-computed");
 var pages = paging.GetPages(1, 10);
 console.log(pages); // [ 1, 2, 3, 4, 5, 0, 10 ]
 ```
