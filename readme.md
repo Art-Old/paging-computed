@@ -4,7 +4,7 @@
 
 ## Method
 
-### GetPages(nowPage,maxPage)
+### GetPages(nowPage, maxPage)
 
 取得當前分頁資料
 
@@ -14,7 +14,7 @@ var pages = paging.GetPages(1, 10);
 console.log(pages); // [ 1, 2, 3, 4, 5, 0, 10 ]
 ```
 
-### IsEnableLast
+### IsEnableLast(nowPage, maxPage)
 
 上一頁按鈕是否 Enable
 
@@ -23,7 +23,7 @@ var isEnableLast = paging.IsEnableLast(1, 10);
 console.log(isEnableLast); //false
 ```
 
-### IsEnableNext(nowPage,maxPage)
+### IsEnableNext(nowPage, maxPage)
 
 下一頁按鈕是否 Enable
 
