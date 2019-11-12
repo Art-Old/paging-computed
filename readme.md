@@ -6,6 +6,12 @@
 
 https://github.com/Art-Old/paging-computed
 
+## Install
+
+```
+npm i paging-computed
+```
+
 ## Example
 
 ```javascript
