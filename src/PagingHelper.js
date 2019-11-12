@@ -65,6 +65,7 @@ function GetNearNumber(last, next) {
  * @memberof PagingHelper
  */
 function IsEnableNext(page, maxPage) {
+  if (maxPage < 7) return false 
   return !(page >= maxPage);
 }
 
