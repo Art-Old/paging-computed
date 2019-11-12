@@ -93,6 +93,7 @@ describe("GetPagingInfo()", () => {
   dataSet.forEach(d => {
     it(`取得第 ${d.page} 頁分頁資訊`, () => {
       let actual = sut.GetPagingInfo(d.page, d.maxPage);
+      console.log(actual)
       actual.should.be.deep.equal(d.expected);
     });
   })
