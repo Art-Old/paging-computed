@@ -1,7 +1,7 @@
 // @ts-check
-const range = 3;
-const minPage = 1;
-const limitPagesCount = 7
+const range = 3; // 中間相鄰頁碼連結數量
+const minPage = 1; // 最小頁碼
+const limitPagesCount = 7; // 分頁連結數量
 
 /**
  * 取得分頁資訊
@@ -9,7 +9,6 @@ const limitPagesCount = 7
  * @param {number} page - 目前頁數
  * @param {number} maxPage - 最大頁數
  * @returns {number[]} 分頁資訊
- * @memberof PagingHelper
  */
 function GetPages(page, maxPage) {
   let count = maxPage < limitPagesCount ? maxPage : limitPagesCount;
@@ -18,16 +17,18 @@ function GetPages(page, maxPage) {
 
   // 取得中間數
   let mid = GetMiddleNumber(page, maxPage);
-  let midIndex = Math.floor(limitPagesCount / 2)
+  let midIndex = Math.floor(limitPagesCount / 2);
 
   for (let index = 0; index < limitPagesCount; index++) {
-    if (index===0) result[index] = minPage
-    if (index < midIndex -1 && index !==0) result[index] = GetNearNumber(minPage,mid-1)
-    if (index === midIndex-1) result[index] = mid-1
-    if (index === midIndex) result[index] = mid
-    if (index === midIndex+1 ) result[index] = mid+1
-    if (index > midIndex + 1 && index !== limitPagesCount-1) result[index] = GetNearNumber(mid + 1, maxPage);
-    if (index===limitPagesCount-1) result[index] = maxPage
+    if (index === 0) result[index] = minPage;
+    if (index < midIndex - 1 && index !== 0)
+      result[index] = GetNearNumber(minPage, mid - 1);
+    if (index === midIndex - 1) result[index] = mid - 1;
+    if (index === midIndex) result[index] = mid;
+    if (index === midIndex + 1) result[index] = mid + 1;
+    if (index > midIndex + 1 && index !== limitPagesCount - 1)
+      result[index] = GetNearNumber(mid + 1, maxPage);
+    if (index === limitPagesCount - 1) result[index] = maxPage;
   }
   return result;
 }
@@ -37,18 +38,18 @@ function GetPages(page, maxPage) {
  * @param {number} page - 目前頁數
  * @param {number} maxPage - 最大頁數
  * @returns {number} 應顯示的頁碼
- * @memberof PagingHelper
  */
 function GetMiddleNumber(page, maxPage) {
-  let mid;
-  if (page <= 4) {
-    mid = minPage + range;
-  } else if (4 <= page && page < maxPage - range) {
-    mid = page;
+  let result;
+
+  if (page <= Math.ceil(limitPagesCount / 2)) {
+    result = minPage + range;
+  } else if (Math.floor(limitPagesCount / 2) < page && page < maxPage - range) {
+    result = page;
   } else {
-    mid = maxPage - range;
+    result = maxPage - range;
   }
-  return mid;
+  return result;
 }
 /**
  * 取得相鄰數字
@@ -56,7 +57,6 @@ function GetMiddleNumber(page, maxPage) {
  * @param {number} last - 要判斷的數字(小)
  * @param {number} next - 要判斷的數字(大)
  * @returns {number} 回傳相鄰的數字，不相鄰則回傳0
- * @memberof PagingHelper
  */
 function GetNearNumber(last, next) {
   return last + 1 === next - 1 ? last + 1 : 0;
@@ -68,11 +68,10 @@ function GetNearNumber(last, next) {
  * @param {number} page - 目前頁數
  * @param {number} maxPage - 最大頁數
  * @returns {boolean} True：顯示下一頁 / False：不顯示下一頁
- * @memberof PagingHelper
  */
 function IsEnableNext(page, maxPage) {
   //最大頁數未超出限制頁數
-  if (maxPage < limitPagesCount) return false 
+  if (maxPage < limitPagesCount) return false;
 
   return !(page >= maxPage);
 }
@@ -83,7 +82,6 @@ function IsEnableNext(page, maxPage) {
  * @param {number} page - 目前頁數
  * @param {number} maxPage - 最大頁數
  * @returns {boolean} True：顯示上一頁 / False：不顯示上一頁
- * @memberof PagingHelper
  */
 function IsEnableLast(page, maxPage) {
   return !(maxPage <= 1 || page <= 1);
