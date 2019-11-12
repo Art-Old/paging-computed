@@ -5,7 +5,7 @@ chai.should();
 var PagingHelper = require("../src/PagingHelper.js");
 let sut = null;
 beforeEach(() => {
-  sut = PagingHelper
+  sut = PagingHelper;
 });
 
 describe("GetPages() 少於七個顯示", () => {
@@ -61,9 +61,7 @@ let dataSet = [
 
 describe("IsEnableLast()", () => {
   dataSet.forEach(d => {
-    it(`頁面：${d.page}/${d.maxPage} 時，上一頁按鈕顯示？ ${
-      d.expected[0]
-    }`, () => {
+    it(`頁面：${d.page}/${d.maxPage} 時，上一頁按鈕顯示？ ${d.expected[0]}`, () => {
       let actual = sut.IsEnableLast(d.page, d.maxPage);
       actual.should.be.equal(d.expected[0]);
     });
@@ -72,11 +70,31 @@ describe("IsEnableLast()", () => {
 
 describe("IsEnableNext()", () => {
   dataSet.forEach(d => {
-    it(` 頁面：${d.page}/${d.maxPage} 時，下一頁按鈕顯示？ ${
-      d.expected[1]
-    }`, () => {
+    it(` 頁面：${d.page}/${d.maxPage} 時，下一頁按鈕顯示？ ${d.expected[1]}`, () => {
       let actual = sut.IsEnableNext(d.page, d.maxPage);
       actual.should.be.equal(d.expected[1]);
     });
   });
+});
+
+describe("GetPagingInfo()", () => {
+  let dataSet = [
+    { page: 1, maxPage: 10, expected: {pages:[1, 2, 3, 4, 5, 0, 10],isEnableLast:false,isEnableNext:true} },
+    { page: 2, maxPage: 10, expected: {pages:[1, 2, 3, 4, 5, 0, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 3, maxPage: 10, expected: {pages:[1, 2, 3, 4, 5, 0, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 4, maxPage: 10, expected: {pages:[1, 2, 3, 4, 5, 0, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 5, maxPage: 10, expected: {pages:[1, 0, 4, 5, 6, 0, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 6, maxPage: 10, expected: {pages:[1, 0, 5, 6, 7, 0, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 7, maxPage: 10, expected: {pages:[1, 0, 6, 7, 8, 9, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 8, maxPage: 10, expected: {pages:[1, 0, 6, 7, 8, 9, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 9, maxPage: 10, expected: {pages:[1, 0, 6, 7, 8, 9, 10],isEnableLast:true,isEnableNext:true} },
+    { page: 10, maxPage: 10, expected: {pages:[1, 0, 6, 7, 8, 9, 10],isEnableLast:true,isEnableNext:false} }
+  ];
+  dataSet.forEach(d => {
+    it(`取得第 ${d.page} 頁分頁資訊`, () => {
+      let actual = sut.GetPagingInfo(d.page, d.maxPage);
+      actual.should.be.deep.equal(d.expected);
+    });
+  })
+
 });

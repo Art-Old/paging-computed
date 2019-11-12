@@ -79,9 +79,21 @@ function IsEnableNext(page, maxPage) {
 function IsEnableLast(page, maxPage) {
   return !(maxPage <= 1 || page <= 1);
 }
-
+/**
+ * 取得分頁資訊
+ * @param {number} nowPage 目前頁數
+ * @param {number} maxPage 最大頁數
+ */
+function GetPagingInfo(nowPage, maxPage) {
+  return {
+    isEnableLast: IsEnableLast(nowPage, maxPage),
+    isEnableNext: IsEnableNext(nowPage, maxPage),
+    pages: GetPages(nowPage, maxPage)
+  };
+}
 module.exports = {
   GetPages: GetPages,
   IsEnableNext: IsEnableNext,
-  IsEnableLast: IsEnableLast
+  IsEnableLast: IsEnableLast,
+  GetPagingInfo: GetPagingInfo
 };
