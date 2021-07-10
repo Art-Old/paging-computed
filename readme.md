@@ -14,19 +14,24 @@ npm i paging-computed
 ## Example
 
 ```javascript
-var paging = require("paging-computed");
+var PagingHelper = require("./src/PagingHelper.js");
+const paging = new PagingHelper({
+    range:3,
+    minPage:1,
+    limitPagesCount:7
+})
 
-var nowPage = 1;
-var maxPage = 10;
+let nowPage = 1
+let maxPage = 10
 
 // 取得當前分頁資訊
 var pagingInfo = paging.GetPagingInfo(nowPage, maxPage);
-console.log(pagingInfo); //  { isEnableLast: false, isEnableNext: true, pages: [ 1, 2, 3, 4, 5, 0, 10 ] }
+console.log(pagingInfo); //  { isEnableLast: false, isEnableNext: true, pages: [ '1', '2', '3', '4', '5', '…', '10' ] } 
 
 // 當然你也可以分開呼叫
 // 取得當前分頁資料
 var pages = paging.GetPages(nowPage, maxPage);
-console.log(pages); // [ 1, 2, 3, 4, 5, 0, 10 ]
+console.log(pages); // [ '1', '2', '3', '4', '5', '…', '10' ] 
 
 // 上一頁按鈕是否 Enable
 var isEnableLast = paging.IsEnableLast(nowPage, maxPage);
