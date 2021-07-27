@@ -11,7 +11,7 @@ npm i paging-computed
 ## Example
 
 ```js
-var PagingHelper = require("paging-computed")
+var PageHelper = require("paging-computed")
 /** 顯示多少個頁碼 */
 let range = 10
 /** 當前頁碼 */
