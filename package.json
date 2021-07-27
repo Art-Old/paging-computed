@@ -1,6 +1,6 @@
 {
 	"name": "paging-computed",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "前端分頁計算的小工具",
 	"main": "./src/PagingHelper.js",
 	"scripts": {
